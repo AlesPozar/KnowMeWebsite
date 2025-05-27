@@ -36,20 +36,134 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
+const ContactModal = ({ 
+  isModalOpen, 
+  closeModal, 
+  isEnglish, 
+  email, 
+  setEmail, 
+  subject, 
+  setSubject, 
+  message, 
+  setMessage, 
+  handleEmailSubmit 
+}: {
+  isModalOpen: boolean
+  closeModal: () => void
+  isEnglish: boolean
+  email: string
+  setEmail: (value: string) => void
+  subject: string
+  setSubject: (value: string) => void
+  message: string
+  setMessage: (value: string) => void
+  handleEmailSubmit: (e: React.FormEvent) => void
+}) => {
+  if (!isModalOpen) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeModal} />
+
+      {/* Modal */}
+      <div className="relative bg-white rounded-lg shadow-2xl w-full max-w-md mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+          <h2 className="text-xl font-semibold text-slate-900">{isEnglish ? "Contact Us" : "Kontaktirajte Nas"}</h2>
+          <button onClick={closeModal} className="p-1 hover:bg-slate-100 rounded-full transition-colors">
+            <X className="h-5 w-5 text-slate-500" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          <p className="text-slate-600 mb-6">
+            {isEnglish
+              ? "We prefer to conduct our market analysis live, so please sign up for our market research and help shape the future of smart business solutions. Share your thoughts and feedback with us."
+              : "Analizo najraje izvedemo kar v živo zato se prijavite na našo raziskavo trga in pomagajte oblikovati prihodnost pametnih poslovnih rešitev. Delite svoje misli in povratne informacije z nami."}
+          </p>
+
+          <form onSubmit={handleEmailSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                {isEnglish ? "Your Email" : "Vaš E-naslov"}
+              </label>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={isEnglish ? "Enter your email..." : "Vnesite vaš e-naslov..."}
+                className="w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                {isEnglish ? "Subject" : "Zadeva"}
+              </label>
+              <Input
+                type="text"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder={isEnglish ? "Enter subject..." : "Vnesite zadevo..."}
+                className="w-full"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                {isEnglish ? "Message" : "Sporočilo"}
+              </label>
+              <Textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder={
+                  isEnglish ? "Share your thoughts and feedback..." : "Delite svoje misli in povratne informacije..."
+                }
+                className="w-full min-h-24 resize-none"
+                required
+              />
+            </div>
+
+            <div className="flex gap-3 pt-4">
+              <Button type="button" variant="outline" onClick={closeModal} className="flex-1">
+                {isEnglish ? "Cancel" : "Prekliči"}
+              </Button>
+              <Button type="submit" className="flex-1 bg-slate-900 hover:bg-slate-800">
+                <Mail className="mr-2 h-4 w-4" />
+                {isEnglish ? "Send" : "Pošlji"}
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+
 export default function KnowMeWebsite() {
   const [isEnglish, setIsEnglish] = useState(false) // Default to Slovenian
   const [currentPage, setCurrentPage] = useState("about") // Default to About Us
-  const [emailForm, setEmailForm] = useState({ email: "", subject: "", message: "" })
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [message, setMessage] = useState("")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const mailtoLink = `mailto:proki.doki003@gmail.com?subject=${encodeURIComponent(emailForm.subject)}&body=${encodeURIComponent(`From: ${emailForm.email}\n\n${emailForm.message}`)}`
+    const mailtoLink = `mailto:proki.doki003@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${email}\n\n${message}`)}`
     window.location.href = mailtoLink
     setIsModalOpen(false)
-    setEmailForm({ email: "", subject: "", message: "" })
+    setEmail("")
+    setSubject("")
+    setMessage("")
   }
 
   const openModal = () => {
@@ -58,93 +172,9 @@ export default function KnowMeWebsite() {
 
   const closeModal = () => {
     setIsModalOpen(false)
-    setEmailForm({ email: "", subject: "", message: "" })
-  }
-
-  const ContactModal = () => {
-    if (!isModalOpen) return null
-
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        {/* Backdrop */}
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeModal} />
-
-        {/* Modal */}
-        <div className="relative bg-white rounded-lg shadow-2xl w-full max-w-md mx-auto">
-          {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-slate-200">
-            <h2 className="text-xl font-semibold text-slate-900">{isEnglish ? "Contact Us" : "Kontaktirajte Nas"}</h2>
-            <button onClick={closeModal} className="p-1 hover:bg-slate-100 rounded-full transition-colors">
-              <X className="h-5 w-5 text-slate-500" />
-            </button>
-          </div>
-
-          {/* Content */}
-          <div className="p-6">
-            <p className="text-slate-600 mb-6">
-              {isEnglish
-                ? "We prefer to conduct our market analysis live, so please sign up for our market research and help shape the future of smart business solutions. Share your thoughts and feedback with us."
-                : "Analizo najraje izvedemo kar v živo zato se prijavite na našo raziskavo trga in pomagajte oblikovati prihodnost pametnih poslovnih rešitev. Delite svoje misli in povratne informacije z nami."}
-            </p>
-
-            <form onSubmit={handleEmailSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  {isEnglish ? "Your Email" : "Vaš E-naslov"}
-                </label>
-                <Input
-                  type="email"
-                  value={emailForm.email}
-                  onChange={(e) => setEmailForm({ ...emailForm, email: e.target.value })}
-                  placeholder={isEnglish ? "Enter your email..." : "Vnesite vaš e-naslov..."}
-                  className="w-full"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  {isEnglish ? "Subject" : "Zadeva"}
-                </label>
-                <Input
-                  type="text"
-                  value={emailForm.subject}
-                  onChange={(e) => setEmailForm({ ...emailForm, subject: e.target.value })}
-                  placeholder={isEnglish ? "Enter subject..." : "Vnesite zadevo..."}
-                  className="w-full"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  {isEnglish ? "Message" : "Sporočilo"}
-                </label>
-                <Textarea
-                  value={emailForm.message}
-                  onChange={(e) => setEmailForm({ ...emailForm, message: e.target.value })}
-                  placeholder={
-                    isEnglish ? "Share your thoughts and feedback..." : "Delite svoje misli in povratne informacije..."
-                  }
-                  className="w-full min-h-24 resize-none"
-                  required
-                />
-              </div>
-
-              <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={closeModal} className="flex-1">
-                  {isEnglish ? "Cancel" : "Prekliči"}
-                </Button>
-                <Button type="submit" className="flex-1 bg-slate-900 hover:bg-slate-800">
-                  <Mail className="mr-2 h-4 w-4" />
-                  {isEnglish ? "Send" : "Pošlji"}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    )
+    setEmail("")
+    setSubject("")
+    setMessage("")
   }
 
   const AboutUsPage = () => (
@@ -1465,7 +1495,18 @@ export default function KnowMeWebsite() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Contact Modal */}
-      <ContactModal />
+      <ContactModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        isEnglish={isEnglish}
+        email={email}
+        setEmail={setEmail}
+        subject={subject}
+        setSubject={setSubject}
+        message={message}
+        setMessage={setMessage}
+        handleEmailSubmit={handleEmailSubmit}
+      />
 
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">

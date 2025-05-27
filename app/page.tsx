@@ -407,7 +407,7 @@ export default function KnowMeWebsite() {
             <div className="relative flex justify-center">
               <div
                 className="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500"
-                style={{ width: `${isMobileMenuOpen ? "400px" : "380px"}`, height: "230px" }}
+                style={{ width: `${isMobileMenuOpen ? "400pt" : "300pt"}`, height: "230px" }}
               >
                 <Card className="bg-gradient-to-br from-slate-900 to-slate-700 text-white p-6 shadow-2xl h-full">
                   <CardContent className="space-y-4 h-full flex flex-col justify-between">

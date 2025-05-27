@@ -407,9 +407,8 @@ export default function KnowMeWebsite() {
             <div className="relative flex justify-center">
               <div
                 className="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500"
-                style={{ width: `${isMobileMenuOpen ? "400pt" : "300pt"}`, height: "230px" }}
               >
-                <Card className="bg-gradient-to-br from-slate-900 to-slate-700 text-white p-6 shadow-2xl h-full">
+                <Card className="bg-gradient-to-br from-slate-900 to-slate-700 text-white p-4 sm:p-6 shadow-2xl h-auto min-h-[200px] sm:min-h-[230px]">
                   <CardContent className="space-y-4 h-full flex flex-col justify-between">
                     <div className="flex justify-between items-start">
                       <div className="flex-1 min-w-0">
@@ -821,9 +820,8 @@ export default function KnowMeWebsite() {
             <div className="relative flex justify-center">
               <div
                 className="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500"
-                style={{ width: "400px", height: "230px" }}
               >
-                <Card className="bg-gradient-to-br from-green-800 to-blue-800 text-white p-6 shadow-2xl h-full">
+                <Card className="bg-gradient-to-br from-green-800 to-blue-800 text-white p-4 sm:p-6 shadow-2xl h-auto min-h-[200px] sm:min-h-[230px]">
                   <CardContent className="space-y-4 h-full flex flex-col justify-between">
                     <div className="flex justify-between items-start">
                       <div className="flex-1 min-w-0">

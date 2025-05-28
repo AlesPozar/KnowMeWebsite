@@ -233,6 +233,54 @@ export default function KnowMeWebsite() {
                 : "Smo ekipa študentov iz Fakultete za računalništvo in informatiko ter Fakulteto za Ekonomijo Univerze v Ljubljani, ki pod okriljem projekta Garaža razvijamo izdelke KnowMe."}
             </p>
           </div>
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <>
+              {/* Team Member 1 */}
+              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <img
+                    src="images/team/klemen.jfif"
+                    alt="Klemen Remec"
+                    className="w-44 h-44 rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-slate-900">Klemen Remec</h3>
+                  <a href="https://www.linkedin.com/in/klemen-remec/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* Team Member 2 */}
+              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <img
+                    src="images/team/matej.jpg"
+                    alt="Matej Mivšek"
+                    className="w-44 h-44 rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-slate-900">Matej Mivšek</h3>
+                  <a href="https://www.linkedin.com/in/matejmivsek/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </CardContent>
+              </Card>
+
+              {/* Team Member 3 */}
+              <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow">
+                <CardContent className="p-6 text-center">
+                  <img
+                    src="images/team/basic.jpg"
+                    alt="Aleš Požar"
+                    className="w-44 h-44 rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-slate-900">Aleš Požar</h3>
+                  <a href="https://www.linkedin.com/in/aleš-požar-946854279/" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                </CardContent>
+              </Card>
+            </>
+        </div>
         </div>
       </section>
 

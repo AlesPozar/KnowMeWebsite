@@ -229,8 +229,22 @@ export default function KnowMeWebsite() {
             <h2 className="text-4xl font-bold text-slate-900 mb-4">{isEnglish ? "Our Team" : "Naša Ekipa"}</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               {isEnglish
-                ? "We are a team of students from the Faculty of Computer and Information Science and the Faculty of Economics at the University of Ljubljana, developing KnowMe products under the Garaža project."
-                : "Smo ekipa študentov iz Fakultete za računalništvo in informatiko ter Fakulteto za Ekonomijo Univerze v Ljubljani, ki pod okriljem projekta Garaža razvijamo izdelke KnowMe."}
+                ? <>We are a team of students from the Faculty of Computer and Information Science and the Faculty of Economics at the University of Ljubljana, developing KnowMe products under the 
+                  <span> </span>
+                  <span
+                    onClick={() => window.open("https://garaza.io/", "_blank", "noopener,noreferrer")}
+                    className="underline text-blue-600 hover:text-blue-800 cursor-pointer transition-colors"
+                  >Garaža project.</span>
+                  </>
+                : <>
+                  Smo ekipa študentov iz Fakultete za računalništvo in informatiko ter Fakulteto za Ekonomijo Univerze v Ljubljani, ki pod okriljem 
+                  <span> </span>
+                  <span
+                    onClick={() => window.open("https://garaza.io/", "_blank", "noopener,noreferrer")}
+                    className="underline text-blue-600 hover:text-blue-800 cursor-pointer transition-colors"
+                  >projekta Garaža</span><span> </span>
+                  razvijamo izdelke KnowMe.
+                </>}
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

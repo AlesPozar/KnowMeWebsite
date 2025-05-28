@@ -1308,7 +1308,7 @@ export default function KnowMeWebsite() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                  disabled
+                  onClick={() => window.open("https://alespozar.github.io/profile-card-editor/", "_blank", "noopener,noreferrer")}
                 >
                   <Eye className="mr-2 h-5 w-5" />
                   {isEnglish ? "Visit App Preview (In Development)" : "Ogled Predogleda Aplikacije (V Razvoju)"}
